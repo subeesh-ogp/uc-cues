@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Undercover × Claude — Cue Cards</title>
+<style>
+  :root { --bg:#000; --fg:#f5f5f5; --dim:#8a8a8a; --accent:#ffd54a; --accent2:#5ee0c1; --line:#2a2a2a; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; background:var(--bg); color:var(--fg); overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  #deck { height:100dvh; display:flex; transition:transform .25s ease; touch-action:pan-y; }
+  .slide { flex:0 0 100vw; height:100dvh; padding:max(16px,env(safe-area-inset-top)) 16px 64px;
+    display:flex; flex-direction:column; justify-content:center; gap:14px; overflow:hidden; }
+  .meta { display:flex; justify-content:space-between; color:var(--dim); font-size:clamp(14px,3.6vw,20px);
+    font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+  .meta .t { color:var(--accent2); }
+  h1 { font-size:clamp(30px,9vw,60px); line-height:1.05; color:var(--accent); font-weight:800; letter-spacing:-.02em; }
+  h2 { font-size:clamp(14px,3.8vw,22px); color:var(--dim); font-weight:600; margin-top:4px; }
+  ul { list-style:none; display:flex; flex-direction:column; gap:clamp(8px,1.8vh,16px); margin-top:6px; }
+  li { font-size:clamp(22px,6.4vw,40px); font-weight:700; line-height:1.12; padding-left:.7em; position:relative; }
+  li::before { content:""; position:absolute; left:0; top:.38em; width:.32em; height:.32em; border-radius:50%; background:var(--accent2); }
+  li small { display:block; font-size:.55em; font-weight:500; color:var(--dim); margin-top:2px; }
+  li.sub { font-size:.8em; font-weight:600; color:#d6d6d6; margin-left:.9em; }
+  li.sub::before { background:var(--dim); }
+  b { color:var(--accent); font-weight:800; }
+  .cloud { display:flex; flex-wrap:wrap; gap:6px 16px; align-items:baseline; justify-content:center; margin-top:8px; }
+  .cloud span { font-weight:800; line-height:1.1; }
+  .c1 { font-size:clamp(34px,11vw,72px); color:var(--accent); }
+  .c2 { font-size:clamp(26px,8vw,52px); color:var(--fg); }
+  .c3 { font-size:clamp(20px,6vw,38px); color:var(--accent2); }
+  .c4 { font-size:clamp(16px,4.6vw,28px); color:var(--dim); }
+  .nav { position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between;
+    padding:0 12px env(safe-area-inset-bottom); background:linear-gradient(transparent,#000 40%); z-index:5; }
+  .nav button { background:#161616; color:var(--fg); border:1px solid var(--line); border-radius:12px; width:64px; height:40px; font-size:22px; }
+  .dots { display:flex; gap:7px; }
+  .dots i { width:8px; height:8px; border-radius:50%; background:#333; display:block; }
+  .dots i.on { background:var(--accent); transform:scale(1.4); }
+  #wake { position:fixed; top:8px; right:10px; font-size:11px; color:var(--dim); z-index:5; }
+  #wake.ok { color:var(--accent2); }
+  #timer { position:fixed; top:max(6px,env(safe-area-inset-top)); left:10px; z-index:5; display:flex; align-items:center; gap:8px;
+    padding:4px 12px; border-radius:999px; font-weight:800; font-variant-numeric:tabular-nums; font-size:clamp(16px,4.6vw,24px);
+    background:#1b1b1b; color:var(--dim); border:2px solid #333; }
+  #timer.green { background:#0b3d1f; color:#6dff9c; border-color:#1fa34a; }
+  #timer.red { background:#4a0b0b; color:#ff8a8a; border-color:#e03131; }
+  #timer .d { font-size:.8em; font-weight:700; }
+  .dots i.ok { background:#1fa34a; } .dots i.late { background:#e03131; }
+  .dots i.on { outline:2px solid var(--fg); outline-offset:2px; }
+  .slide { padding-top:max(52px,calc(env(safe-area-inset-top) + 44px)); }
+</style>
+</head>
+<body>
+<div id="timer">0:00</div>
+<div id="wake">screen: …</div>
+<main id="deck">
+
+  <section class="slide">
+    <div class="meta"><span>Undercover × Claude</span><span class="t">5 min</span></div>
+    <h1>Building Undercover with Claude</h1>
+    <h2>Hack for Public Good 2026 · rapid build, test, iterate</h2>
+    <div class="cloud">
+      <span class="c1">see</span><span class="c2">your algorithm</span><span class="c3">throwaway tools</span>
+      <span class="c2">humans on judgment</span><span class="c4">not selling the app</span>
+    </div>
+  </section>
+
+  <section class="slide" data-end="45">
+    <div class="meta"><span>1 of 4</span><span class="t">0:00 – 0:45</span></div>
+    <h1>Background & problem</h1>
+    <ul>
+      <li><b>OGP</b> — small, fast gov product teams</li>
+      <li><b>January hackathon</b> — real users, in weeks</li>
+      <li>Singapore is <b>hot</b></li>
+      <li>Nav apps optimise <b>distance</b>, not shade</li>
+      <li>Shelter exists — gap is <b>information</b></li>
+    </ul>
+  </section>
+
+  <section class="slide" data-end="105">
+    <div class="meta"><span>2 of 4</span><span class="t">0:45 – 1:45</span></div>
+    <h1>Demo + the idea</h1>
+    <h2>LIVE · undercover.gov.sg</h2>
+    <ul>
+      <li>One route: <b>9am → 2pm</b></li>
+      <li>Route <b>moves with shadows</b></li>
+      <li>3 options: <b>shortest · shadiest · balanced</b></li>
+      <li>Idea: optimise <b>shade, not distance</b></li>
+      <li>Under hood: <b>graph · ray-traced shadows · Silverfox router</b></li>
+    </ul>
+  </section>
+
+  <section class="slide" data-end="210">
+    <div class="meta"><span>3 of 4 · Experience</span><span class="t">1:45 – 3:30</span></div>
+    <h1>Challenges</h1>
+    <div class="cloud">
+      <span class="c1">unfamiliar domains</span>
+      <span class="c2">messy scattered data</span>
+      <span class="c2">shade changes hourly</span>
+      <span class="c3">correctness hard to judge</span>
+      <span class="c3">"balanced" is subjective</span>
+      <span class="c1">~2 weeks</span>
+      <span class="c4">GIS · solar · routing</span>
+      <span class="c4">OSM + LTA linkways</span>
+      <span class="c4">100Ks of edges</span>
+    </div>
+  </section>
+
+  <section class="slide" data-end="210">
+    <div class="meta"><span>3 of 4 · Experience</span><span class="t">1:45 – 3:30</span></div>
+    <h1>How Claude helped</h1>
+    <ul>
+      <li><b>Fast on-ramp</b> to new domains<small>bottleneck → "is it right? is it good?"</small></li>
+      <li><b>Throwaway tools</b> = a prompt, not a day</li>
+      <li class="sub">Shade visualiser <small>(screenshot)</small></li>
+      <li class="sub">Route debugger <small>(screenshot)</small></li>
+      <li><b>Tight tuning loop</b> → <b>~95%</b> picked balanced</li>
+      <li><b>Time with users</b> → locals, not tourists</li>
+    </ul>
+  </section>
+
+  <section class="slide" data-end="285">
+    <div class="meta"><span>4 of 4 · Ongoing</span><span class="t">3:30 – 4:45</span></div>
+    <h1>Silverfox editor</h1>
+    <h2>LIVE · maintain the route graph</h2>
+    <ul>
+      <li><b>Hand-fix</b> bad edges on map</li>
+      <li><b>Void-deck path viewer</b> ← user feedback</li>
+      <li><b>Changesets</b> → recompute only edited edges</li>
+      <li>Throwaway habit → <b>permanent tooling</b></li>
+    </ul>
+  </section>
+
+  <section class="slide" data-end="285">
+    <div class="meta"><span>4 of 4 · Ongoing</span><span class="t">3:30 – 4:45</span></div>
+    <h1>Spec-driven: void-deck edges</h1>
+    <h2>Where Claude was invaluable, not just faster</h2>
+    <ul>
+      <li>Gap: <b>OSM has no void decks</b></li>
+      <li>Spec: <b>find blocks → classify shape → walk line → snap & check</b></li>
+      <li>Hard: <b>bounding boxes, medial-axis skeletons</b></li>
+      <li>Loop: <b>QA → write up → Claude fixes</b></li>
+      <li class="sub">Corner ends → trim spur, ray to end face</li>
+      <li class="sub">Kinks → width-scaled simplify</li>
+      <li><b>~8,900 blocks</b> in <b>~2 min</b></li>
+    </ul>
+  </section>
+
+  <section class="slide" data-end="300">
+    <div class="meta"><span>Close</span><span class="t">4:45 – 5:00</span></div>
+    <h1>Takeaway</h1>
+    <ul>
+      <li>Build tools to <b>see</b> your algorithm, not just run it</li>
+      <li>Claude makes that <b>nearly free</b></li>
+      <li>Humans keep: <b>correctness · tuning · users</b></li>
+      <li><b>undercover.gov.sg</b></li>
+    </ul>
+  </section>
+
+</main>
+
+<nav class="nav">
+  <button id="prev" aria-label="Previous">‹</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="Next">›</button>
+</nav>
+
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var slides = deck.children, n = slides.length, i = 0;
+  var dots = document.getElementById('dots');
+  for (var k = 0; k < n; k++) dots.appendChild(document.createElement('i'));
+
+  // timer: starts on first advance past slide 1; green = within section's end time, red = over
+  var timerEl = document.getElementById('timer');
+  var t0 = null, result = [];
+  function endOf(k) { return parseInt(slides[k].getAttribute('data-end'), 10) || null; }
+  function fmt(s) { s = Math.abs(Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function paint() {
+    for (var k = 0; k < n; k++) dots.children[k].className = (result[k] || '') + (k === i ? ' on' : '');
+  }
+  function tick() {
+    if (t0 === null) { timerEl.className = ''; timerEl.textContent = 'Timer: swipe to start'; return; }
+    var e = (Date.now() - t0) / 1000, end = endOf(i);
+    if (!end) { timerEl.className = ''; timerEl.textContent = fmt(e); return; }
+    var d = e - end, late = d > 0;
+    timerEl.className = late ? 'red' : 'green';
+    timerEl.innerHTML = fmt(e) + ' <span class="d">' + (late ? '+' + fmt(d) + ' over' : fmt(d) + ' spare') + '</span>';
+  }
+  function go(to) {
+    var prev = i;
+    to = Math.max(0, Math.min(n - 1, to));
+    if (t0 === null && prev === 0 && to > 0) t0 = Date.now();
+    if (t0 !== null && to > prev && endOf(prev)) {
+      result[prev] = (Date.now() - t0) / 1000 > endOf(prev) ? 'late' : 'ok';
+    }
+    i = to;
+    deck.style.transform = 'translateX(' + (-i * 100) + 'vw)';
+    paint(); tick();
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+  }
+  setInterval(tick, 500);
+  // double-tap the timer to reset
+  timerEl.addEventListener('dblclick', function (e) {
+    e.stopPropagation(); t0 = null; result = []; go(0);
+  });
+  document.getElementById('prev').onclick = function () { go(i - 1); };
+  document.getElementById('next').onclick = function () { go(i + 1); };
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) > -1) go(i + 1);
+    if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) > -1) go(i - 1);
+  });
+  // swipe + edge taps
+  var x0 = null, y0 = null;
+  deck.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  deck.addEventListener('click', function (e) {
+    var w = window.innerWidth;
+    if (e.clientX > w * 0.7) go(i + 1); else if (e.clientX < w * 0.3) go(i - 1);
+  });
+  go(parseInt(location.hash.slice(1), 10) - 1 || 0);
+
+  // keep screen on
+  var lock = null, badge = document.getElementById('wake');
+  function show(ok) { badge.textContent = ok ? 'screen: stays on' : 'screen: may sleep'; badge.className = ok ? 'ok' : ''; }
+  function acquire() {
+    if (!('wakeLock' in navigator)) { show(false); return; }
+    navigator.wakeLock.request('screen').then(function (l) {
+      lock = l; show(true);
+      l.addEventListener('release', function () { show(false); });
+    }).catch(function () { show(false); });
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') acquire(); });
+  document.addEventListener('click', function () { if (!lock || lock.released) acquire(); });
+  acquire();
+})();
+</script>
+</body>
+</html>
